@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+{% block content %}<!--Inherits templates from base with the block called content-->
+        <article class="media content-section">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">  <!--the current post, author of it, image of it and url of it-->
+          <div class="media-body">
+            <div class="article-metadata">
+                <h3 class="user-heading">User's Info:</h3>
+            </div>
+               <h5 class="account-heading">{{ user.username|capfirst }}</h5>
+                <p class="text-secondary">{{ user.email}}</p> <!--user = user.id-->
+          </div>
+        </article>
+{% endblock %}

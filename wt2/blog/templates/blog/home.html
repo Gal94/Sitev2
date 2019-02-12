@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+{% block content %}<!--Inherits templates from base with the block called content-->
+    <h1>Blog Home!</h1>
+    {% for post in posts %}
+        <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt=":(">  <!--the current post, author of it, image of it and url of it-->
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="{% url 'user-detail' post.author.id %}">{{ post.author|capfirst }}</a>
+              <small class="text-muted">{{ post.date_posted|date:"d F, Y" }}</small> <!--snippets-->
+            </div>
+            <h2><a class="article-title" href="{% url 'blog:post-detail' post.id %}">{{ post.title|capfirst }}</a></h2> <!--pk get passed in as url -->
+            <p class="article-content">{{ post.content }}</p>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock %}

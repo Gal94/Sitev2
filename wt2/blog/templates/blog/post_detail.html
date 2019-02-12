@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% block content %}<!--Inherits templates from base with the block called content-->
+        <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" alt=":(">  <!--the current post, author of it, image of it and url of it-->
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ object.author }}</a>
+              <small class="text-muted">{{ object.date_posted|date:"d F, Y" }}</small> <!--snippets-->
+                {% if object.author == user %} <!--if author is the logged in user (author is supposed to be a user type-->
+                    <div>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'blog:post-update' object.id %}">Update</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'blog:post-delete' object.id %}">Delete</a>
+                    </div>
+                {% endif %}
+            </div>
+            <h2 class="article-title">{{ object.title }}</h2>
+            <p class="article-content">{{ object.content }}</p>
+          </div>
+        </article>
+{% endblock %}
